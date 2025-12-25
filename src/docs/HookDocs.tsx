@@ -68,7 +68,7 @@ const HookDocs: FC = () => {
       })()
     return () => { mounted = false }
   }, [])
-  
+
 
   useEffect(() => {
     let mounted = true
@@ -77,7 +77,7 @@ const HookDocs: FC = () => {
       return () => { mounted = false }
     }
 
-    ;(async () => {
+    ; (async () => {
       try {
         const resp = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`)
         if (!resp.ok) return
