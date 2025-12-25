@@ -41,8 +41,8 @@ const HookDocs: FC = () => {
 
   // repo header info (owner/name can be customized)
   const [repoInfo, setRepoInfo] = useState<{ stars: number; url: string; fullName?: string } | null>(null)
-  const repoOwner = 'reactcraft'
-  const repoName = 'use-hooks'
+  const repoOwner = 'kuldeepNageshwar17'
+  const repoName = 'reactHookDirectory'
   const useDummyStar = true
   const dummyStars = 42
 
@@ -68,6 +68,7 @@ const HookDocs: FC = () => {
       })()
     return () => { mounted = false }
   }, [])
+  
 
   useEffect(() => {
     let mounted = true
@@ -180,22 +181,54 @@ const HookDocs: FC = () => {
     <div className="docs-app">
       <header className="docs-header">
         <div className="header-left">
-          <a href="/" className="header-brand">hook-house</a>
+          <a href="/" className="header-brand">React Hook Directory</a>
         </div>
         <div className="header-right">
           {repoInfo ? (
             <>
               <a href={repoInfo.url} target="_blank" rel="noreferrer" className="repo-link">{repoInfo.fullName || `${repoOwner}/${repoName}`}</a>
-              <a href={repoInfo.url} target="_blank" rel="noreferrer" className="star-btn">⭐ {repoInfo.stars.toLocaleString()}</a>
+              <a href={`https://github.com/${repoOwner}/${repoName}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noreferrer" className="contrib-link">Contribute</a>
+              {/* GitHub button iframe: allows users to star the repo (opens auth if needed) */}
+              <iframe
+                title="GitHub Stars"
+                src={`https://ghbtns.com/github-btn.html?user=${repoOwner}&repo=${repoName}&type=star&count=true`}
+                frameBorder="0"
+                scrolling="0"
+                width="110"
+                height="20"
+                style={{ verticalAlign: 'middle' }}
+              />
             </>
           ) : (
-            <a href={`https://github.com/${repoOwner}/${repoName}`} target="_blank" rel="noreferrer" className="repo-link">View repo</a>
+            <>
+              <a href={`https://github.com/${repoOwner}/${repoName}`} target="_blank" rel="noreferrer" className="repo-link">View repo</a>
+              <a href={`https://github.com/${repoOwner}/${repoName}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noreferrer" className="contrib-link">Contribute</a>
+              <iframe
+                title="GitHub Stars"
+                src={`https://ghbtns.com/github-btn.html?user=${repoOwner}&repo=${repoName}&type=star&count=true`}
+                frameBorder="0"
+                scrolling="0"
+                width="110"
+                height="20"
+                style={{ verticalAlign: 'middle' }}
+              />
+            </>
           )}
         </div>
       </header>
       <div className="docs-root">
         <aside className="docs-sidebar">
           <div className="docs-brand">use-hooks — Docs</div>
+          <div style={{ margin: '8px 0' }}>
+            <a
+              href={`https://github.com/${repoOwner}/${repoName}/blob/main/CONTRIBUTING.md`}
+              target="_blank"
+              rel="noreferrer"
+              className="contrib-link sidebar-link"
+            >
+              Contribute
+            </a>
+          </div>
           {HOOK_GROUPS.map(group => (
             <div key={group.title} className="docs-group">
               <button
